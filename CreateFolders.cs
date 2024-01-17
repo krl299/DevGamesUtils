@@ -3,16 +3,14 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 
-public class CreateFolders : EditorWindow {
-
-    private static string projectName = "ProjectName";
+public class CreateDefaultFolders : EditorWindow {
 
     /// <summary>
     /// Creates an instance of the CreateFolders window, sets its position and size, and shows it as a popup.
     /// </summary>
     [MenuItem("Assets/Create Default Folders")]
     private static void SetUpFolders(){
-        CreateFolders window = GetWindow<CreateFolders>();
+        CreateDefaultFolders window = GetWindow<CreateDefaultFolders>();
         window.position = new Rect(Screen.width / 2, Screen.height / 2, 400, 150);
         window.ShowPopup();
     }
@@ -20,7 +18,7 @@ public class CreateFolders : EditorWindow {
     /// <summary>
     /// Creates a set of predefined folders in the Unity project's Assets directory.
     /// </summary>
-    private static void CreateProjectFolders(){
+    private static void CreateAllFolders(){
         List<string> folders = new List<string>{
             "Animations",
             "Audio",
@@ -60,13 +58,7 @@ public class CreateFolders : EditorWindow {
     /// Handles the GUI events for the CreateFolders window.
     /// </summary>
     void OnGUI(){
-        EditorGUILayout.LabelField("Insert the Project name used as the root folder");
-        projectName = EditorGUILayout.TextField("Project Name", projectName);
-        this.Repaint();
-        GUILayout.Space(70);
-        if (GUILayout.Button("Create Folders")){
-            CreateProjectFolders();
-            this.Close();
-        }
+        CreateAllFolders();
+        this.Close();
     }
 }
